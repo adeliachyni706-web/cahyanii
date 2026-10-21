@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Data Karyawan</title>
+
+<style>
+body {
+    font-family: Arial;
+    background-color: #f2f2f2;
+}
+
+.container {
+    width: 320px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input, select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkgreen;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Data Karyawan</h2>
+
+    <div class="form-group">
+        <label>Nama Karyawan</label>
+        <input type="text" id="nama">
+    </div>
+
+    <div class="form-group">
+        <label>Golongan</label>
+        <select id="golongan">
+            <option value="">-- Pilih --</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Keterangan</label>
+        <select id="keterangan">
+            <option value="">-- Pilih --</option>
+            <option value="1000">I</option>
+            <option value="2000">II</option>
+            <option value="3000">III</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Gaji Pokok</label>
+        <input type="text" id="gapok" readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Tunjangan</label>
+        <input type="text" id="tunjangan" readonly>
+    </div>
+
+    <div class="form-group">
+        <label>Gaji Bersih</label>
+        <input type="text" id="gaji" readonly>
+    </div>
+
+    <button onclick="hitungGaji()">Hitung</button>
+</div>
+
+<script>
+function hitungGaji() {
+    let golongan = document.getElementById("golongan").value;
+    let ket = document.getElementById("keterangan").value;
+
+    let gapok = 0;
+
+    if (golongan == "1") {
+        gapok = 3000000;
+    } else if (golongan == "2") {
+        gapok = 4000000;
+    } else if (golongan == "3") {
+        gapok = 5000000;
+    } else {
+        alert("Pilih golongan dulu!");
+        return;
+    }
+
+    let tunjangan = ket ? parseInt(ket) : 0;
+
+    let gajiBersih = gapok + tunjangan;
+
+    document.getElementById("gapok").value = "Rp " + gapok;
+    document.getElementById("tunjangan").value = "Rp " + tunjangan;
+    document.getElementById("gaji").value = "Rp " + gajiBersih;
+}
+</script>
+
+</body>
+</html>
